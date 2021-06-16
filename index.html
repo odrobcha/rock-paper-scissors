@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock-Paper-Scissors</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/game.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>BeCode / JavaScript</h1>
+        <h2>
+            <strong>Rock-Paper-Scissors </strong>
+        </h2>
+    </header>
+    <div class="content">
+        <section class="explain">
+
+            <p>
+                <img src="img/rock-paper-scissors.jpeg" class="description-img">
+                You decide that kids these days only know about Fortnite and Tik Tok, but have no clue about great old games like a rock-paper-scissors game. Time to play the viral (retro) game!
+            </p>
+        </section>
+        <section class="material">
+
+            <div class="button-container">
+                <p class="user-choice-title">Make your choice </p>
+                <div class="user-choice">
+
+                    <button id="rock" class="item-button">
+                        <img src="img/rock.jpeg">
+                    </button>
+                    <button id="scissors" class="item-button">
+                        <img src="img/scissors.jpeg">
+                    </button>
+                    <button id="paper" class="item-button">
+                        <img src="img/paper.jpeg">
+                    </button>
+                </div>
+
+                <p class="computer-choice-title">
+                    <span>
+                         Computer's choice
+                    </span>
+                </p>
+                <div id='computerChoice' class="display-none">
+                    <img id='computer-choice-img' src="img/paper.jpeg">
+                </div>
+            </div>
+            <div class="start-game-container">
+                <button id="startGame">Play the game</button>
+            </div>
+
+
+
+            <p id="result"></p>
+        </section>
+    </div>
+</div>
+
+<script src="scripts/script.js"></script>
+
+
+</body>
+</html>
