@@ -2,7 +2,6 @@
     --my-dark-gray: #313133;
     --item-button-width: 70px;
 }
-
 .description-img{
     width: 100px;
     float: right;
@@ -37,9 +36,7 @@
 }
 .button-container p{
     font-size: 14px;
-
 }
-
 .user-choice{
     grid-column: 1/2;
     grid-row: 2/3;
@@ -49,7 +46,6 @@
     grid-template-columns: repeat(5, var(--item-button-width));
     height: 102px;
 }
-
 #computerChoice{
     grid-column: 3/4;
     grid-row: 2/3;
@@ -73,20 +69,17 @@
     grid-row: 1/2;
     justify-self: center;
 }
-
 .user-choice-title{
     rid-column: 1/2;
     grid-row: 1/2;
     justify-self: center;
 }
-
 .display-none{
     display: none;
 }
 .inactive{
     opacity: 0.5;
 }
-
 #startGame, #playAgain{
     margin: 20px 0;
  }
@@ -106,17 +99,14 @@
 #score{
     font-weight: bold;
 }
-
 #result p{
     text-align: center;
 }
-
 #rules-link{
     color: var(--light-blue);
     font-weight: bold;
     cursor: pointer;
  }
-
 #rules{
     position: absolute;
     width: 95%;
@@ -127,12 +117,10 @@
     font-size: 16px;
     padding: 40px;
     z-index: 10;
-
 }
 #rules-close{
     float: right;
     cursor: pointer;
-
 }
 #rules>*, li{
     margin: 20px 0;
