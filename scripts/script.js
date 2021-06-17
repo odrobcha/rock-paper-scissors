@@ -19,7 +19,7 @@
         }
     }
     const randomComputerChoice = () =>{
-        return Math.floor(Math.random()*3);
+        return Math.floor(Math.random()*6);
     }
     const getGameResult = (result, userChoice, computerChoice) => {
         if(result == 'draw'){
