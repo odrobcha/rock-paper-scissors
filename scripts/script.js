@@ -4,6 +4,12 @@
     let userChoice = '';
 
     const userButtons = document.getElementsByClassName('item-button');
+    const resultElement = document.getElementById('result');
+    const computerChoiceImg = document.getElementById('computer-choice-img');
+    const infoTextElement = document.getElementById('text');
+    const computerChoiceElement = document.getElementById('computerChoice');
+    const playAgainButton = document.getElementById('playAgain');
+    const startGameButton = document.getElementById('startGame');
 
     const computerButtons = [
         {item: 'rock', imgSrc: "img/rock.jpeg"},
@@ -19,18 +25,18 @@
         }
     }
     const randomComputerChoice = () =>{
-        return Math.floor(Math.random()*6);
+        return Math.floor(Math.random()*5);
     }
-    const getGameResult = (result, userChoice, computerChoice) => {
+        const getGameResult = (result, userChoice, computerChoice) => {
         if(result == 'draw'){
-            document.getElementById('result').innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Nobody won.</p>`
+            resultElement.innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Nobody won.</p>`
         };
         if (result == "userWon"){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+            resultElement.innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
             userScore += 1;
         };
         if (result == "computerWon"){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yammer!!!! You lost :( You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+            resultElement.innerHTML = `<p class="result-text">Yammer!!!! You lost :( You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
             computerScore += 1;
         };
 
@@ -40,16 +46,16 @@
     };
     const playGame = ()=>{
         if(userChoice == ''){
-            document.getElementById('result').innerHTML =`<p>Please, make your choice</p>`;
-            document.getElementById('text').innerHTML = '';
+            resultElement.innerHTML =`<p>Please, make your choice</p>`;
+            infoTextElement .innerHTML = '';
             return
         };
 
         let computerChoice = computerButtons[Number(randomComputerChoice())];
 
-        document.getElementById('computer-choice-img').setAttribute("src", computerChoice.imgSrc);
+        computerChoiceImg.setAttribute("src", computerChoice.imgSrc);
         document.getElementById('computer-choice-img-title').innerHTML = computerChoice.item;
-        document.getElementById('computerChoice').classList.remove('display-none');
+        computerChoiceElement.classList.remove('display-none');
 
 
        if (userChoice == computerChoice.item){
@@ -129,43 +135,47 @@
         userChoice = '';
 
         if (userScore > computerScore){
-            document.getElementById('text').innerHTML = `Let play again! Give computer a chance to win!!!!`
+            infoTextElement .innerHTML = `Let play again! Give computer a chance to win!!!!`
         }
         if (userScore < computerScore){
-            document.getElementById('text').innerHTML = `Try again and win!!!`
+            infoTextElement .innerHTML = `Try again and win!!!`
         }
         if (userScore == computerScore){
-            document.getElementById('text').innerHTML = `Let play again! Somebody has to win!!!!`
+            infoTextElement .innerHTML = `Let play again! Somebody has to win!!!!`
         }
-        document.getElementById('playAgain').classList.remove("display-none");
-        document.getElementById('startGame').classList.add('display-none');
+        playAgainButton.classList.remove("display-none");
+        startGameButton.classList.add('display-none');
     }
 
     gameScore();
 
-    document.getElementById('playAgain').addEventListener('click', () =>{
+    playAgainButton.addEventListener('click', () =>{
 
-        document.getElementById('playAgain').classList.add("display-none");
-        document.getElementById('startGame').classList.remove("display-none");
+        playAgainButton.classList.add("display-none");
+        startGameButton.classList.remove("display-none");
         for (const button of userButtons) {
                 button.classList.remove('inactive');
         };
-        document.getElementById('computerChoice').classList.add('display-none');
-        document.getElementById('text').innerHTML = '';
-        document.getElementById('result').innerHTML = '';
+        computerChoiceElement.classList.add('display-none');
+        infoTextElement .innerHTML = '';
+        resultElement.innerHTML = '';
     })
 
 
     for (const button of userButtons) {
             button.addEventListener("click", (target) => {
-                userChoice = button.getAttribute('id');
-                addInactiveClass();
-                button.classList.remove('inactive');
-                document.getElementById('computerChoice').classList.add('display-none');
+
+               if (!startGameButton.classList.contains('display-none')) {
+                   userChoice = button.getAttribute('id');
+                   addInactiveClass();
+                   button.classList.remove('inactive');
+                   computerChoiceElement.classList.add('display-none');
+               }
+
         });
 
     };
-    document.getElementById('startGame').addEventListener('click', playGame);
+    startGameButton.addEventListener('click', playGame);
     document.getElementById('rules-link').addEventListener('click' , () => {
         document.getElementById('rules').classList.remove('display-none');
     });
