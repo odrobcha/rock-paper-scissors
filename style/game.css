@@ -4,9 +4,9 @@
 }
 
 .description-img{
-    width: 150px;
-    float: left;
-    padding: 10px;
+    width: 100px;
+    float: right;
+    margin-top: -20px;
 }
 .material label, .material input, .material button{
     font-size: 14px;
@@ -15,6 +15,8 @@
 }
 .material #result{
     font-size: 16px;
+    color: var(--alt-blue);
+    font-weight: bolder;
 }
 .material .item-button{
     cursor: pointer;
@@ -25,10 +27,13 @@
     margin-right: 10px;
     border: none;
 }
+.img-title{
+    color: white;
+}
 .button-container {
     display: grid;
     grid-template-rows: 40px calc(100% - 20px);
-    grid-template-columns: repeat(3, 33.33%);
+    grid-template-columns: 50% 0% 50%;
 }
 .button-container p{
     font-size: 14px;
@@ -41,13 +46,27 @@
     display: grid;
     justify-self: center;
     grid-template-rows: 100%;
-    grid-template-columns: repeat(3, var(--item-button-width));
+    grid-template-columns: repeat(5, var(--item-button-width));
+    height: 102px;
 }
 
 #computerChoice{
     grid-column: 3/4;
     grid-row: 2/3;
     justify-self: center;
+    background-color:var(--my-dark-gray);
+    border: none;
+    align-items: center;
+    justify-items: center;
+    height: 102px;
+}
+#computer-choice-img-title{
+    background-color: var(--my-dark-gray);
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+}
+#computer-choice-img{
 }
 .computer-choice-title{
     grid-column: 3/4;
@@ -60,12 +79,7 @@
     grid-row: 1/2;
     justify-self: center;
 }
-#loader{
-    grid-column: 2/3;
-    grid-row: 2/3;
-    align-self: center;
-    justify-self: center;
-}
+
 .display-none{
     display: none;
 }
@@ -73,7 +87,7 @@
     opacity: 0.5;
 }
 
-#startGame{
+#startGame, #playAgain{
     margin: 20px 0;
  }
 .start-game-container{
@@ -83,12 +97,63 @@
 .result-img{
     width:30px;
 }
-#score{
+#score, #text {
     font-size: 16px;
     display: grid;
     justify-items: center;
+    color: var(--alt-blue);
+}
+#score{
+    font-weight: bold;
 }
 
 #result p{
     text-align: center;
+}
+
+#rules-link{
+    color: var(--light-blue);
+    font-weight: bold;
+    cursor: pointer;
+ }
+
+#rules{
+    position: absolute;
+    width: 95%;
+    min-height: 400px;
+    margin: 0 auto;
+    background-color: white;
+    color: var(--main-blue);
+    font-size: 16px;
+    padding: 40px;
+    z-index: 10;
+
+}
+#rules-close{
+    float: right;
+    cursor: pointer;
+
+}
+#rules>*, li{
+    margin: 20px 0;
+}
+#rules a{
+    color: var(--alt-blue);
+    text-decoration: none;
+}
+@media only screen and (min-width: 650px) and (max-width: 1000px) {
+
+    .user-choice{
+        grid-template-rows: 50% 50%;
+        grid-template-columns: repeat(3, var(--item-button-width));
+        grid-row-gap: 10px;
+    }
+}
+@media only screen and (max-width: 649px) {
+
+    .user-choice{
+        grid-template-rows: repeat(3, 33.3%);
+        grid-template-columns: repeat(2, var(--item-button-width));
+        grid-row-gap: 10px;
+    }
 }

@@ -14,15 +14,46 @@
     <header>
         <h1>BeCode / JavaScript</h1>
         <h2>
-            <strong>Rock-Paper-Scissors </strong>
+            <strong>Rock-Paper-Scissors-Lizard-Spock </strong>
         </h2>
     </header>
     <div class="content">
+        <div id="rules" class="display-none">
+            <div id="rules-close">X</div>
+            <div class="title"> Rock-Paper-Scissors-Lizard-Spock. Rules</div>
+
+            <div class="rules-text">
+                <ul>
+                    <li>Scissors cuts Paper</li>
+
+                    <li>Paper covers Rock</li>
+
+                    <li>Rock crushes Lizard</li>
+
+                    <li>Lizard poisons Spock</li>
+
+                    <li>Spock smashes Scissors</li>
+
+                    <li>Scissors decapitates Lizard</li>
+
+                    <li>Lizard eats Paper</li>
+
+                    <li>Paper disproves Spock</li>
+
+                    <li>Spock vaporizes Rock</li>
+
+                    <li>(and as it always has) Rock crushes Scissors</li>
+                </ul>
+                <a href="https://youtu.be/Kov2G0GouBw" target="_blank">Watch how to play</a>
+            </div>
+
+        </div>
         <section class="explain">
 
             <p>
-                <img src="img/rock-paper-scissors.jpeg" class="description-img">
-                You decide that kids these days only know about Fortnite and Tik Tok, but have no clue about great old games like a rock-paper-scissors game. Time to play the viral (retro) game!
+                <img src="img/logo.png" class="description-img">
+                You decide that kids these days only know about Fortnite and Tik Tok, but have no clue about great old-new games like a rock-paper-scissors-lizard-spock game.
+                Time to play the viral (retro) game! Forgot the rules? <span id="rules-link">Click here</span> to read.
             </p>
         </section>
         <section class="material">
@@ -34,13 +65,25 @@
 
                     <button id="rock" class="item-button">
                         <img src="img/rock.jpeg">
+                        <span class="img-title">Rock</span>
                     </button>
                     <button id="scissors" class="item-button">
                         <img src="img/scissors.jpeg">
+                        <span class="img-title">Scissors</span>
                     </button>
                     <button id="paper" class="item-button">
                         <img src="img/paper.jpeg">
+                        <span class="img-title">Paper</span>
                     </button>
+                    <button id="lizard" class="item-button">
+                        <img src="img/lizard.jpeg">
+                        <span class="img-title">Lizard</span>
+                    </button>
+                    <button id="spock" class="item-button">
+                        <img src="img/spock.jpeg">
+                        <span class="img-title">Spock</span>
+                    </button>
+
                 </div>
 
                 <p class="computer-choice-title">
@@ -48,17 +91,20 @@
                          Computer's choice
                     </span>
                 </p>
-                <div id='computerChoice' class="display-none">
+                <button id='computerChoice' class="display-none">
                     <img id='computer-choice-img' src="img/paper.jpeg">
-                </div>
+                    <div id='computer-choice-img-title'></div>
+                </button>
             </div>
             <div class="start-game-container">
-                <button id="startGame">Play the game</button>
+                <button id="startGame">Play the Game</button>
+                <button id="playAgain" class="display-none">Play Again</button>
             </div>
 
 
 
             <div id="result"></div>
+            <div id="text"></div>
         </section>
     </div>
 </div>
