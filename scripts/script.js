@@ -1,7 +1,10 @@
 (function (){
-   let userScore = 0;
-   let computerScore = 0;
-    document.getElementById('score').innerHTML = `User ${userScore} : ${computerScore} Computer`;
+    let userScore = 0;
+    let computerScore = 0;
+    let userChoice = '';
+
+    const userButtons = document.getElementsByClassName('item-button');
+
     const computerButtons = [
         {item: 'rock', imgSrc: "img/rock.jpeg"},
         {item: 'scissors', imgSrc: "img/scissors.jpeg"},
@@ -16,49 +19,66 @@
     const randomComputerChoice = () =>{
         return Math.floor(Math.random()*3);
     }
+    const getGameResult = (result, userChoice, computerChoice) => {
+        if(result == 'draw'){
+            document.getElementById('result').innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Nobody won.</p>`
+        };
+        if (result == "userWon"){
+            document.getElementById('result').innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+            userScore += 1;
+        };
+        if (result == "computerWon"){
+            document.getElementById('result').innerHTML = `<p class="result-text">Yammer!!!! You lost :( You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+            computerScore += 1;
+        };
+
+    };
+    const gameScore = () =>{
+        document.getElementById('score').innerHTML = `SmartUser ${userScore} : ${computerScore} Computer`;
+    };
     const playGame = ()=>{
         if(userChoice == ''){
             document.getElementById('result').innerHTML =`<p>Please, make your choice</p>`;
             return
         };
+
         let computerChoice = computerButtons[Number(randomComputerChoice())];
+
         document.getElementById('computer-choice-img').setAttribute("src", computerChoice.imgSrc);
         document.getElementById('computerChoice').classList.remove('display-none');
 
        if (userChoice == computerChoice.item){
-           document.getElementById('result').innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Nobody win.</p>`
+           getGameResult('draw', userChoice, computerChoice);
        };
+
        if ((userChoice == 'rock') && (computerChoice.item == "paper")){
-           document.getElementById('result').innerHTML = `<p class="result-text">Yammer!!!! You lost :( You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-           computerScore += 1;
+           getGameResult('computerWon', userChoice, computerChoice);
        };
+
         if ((userChoice == 'rock') && (computerChoice.item == "scissors")){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            userScore += 1;
-        };
-        if ((userChoice == 'paper') && (computerChoice.item == "rock")){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            userScore += 1;
-        };
-        if ((userChoice == 'paper') && (computerChoice.item == "scissors")){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yammeer!!!! You lost :( Your choice is: <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            computerScore += 1;
-        };
-        if ((userChoice == 'scissors') && (computerChoice.item == "rock")){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yammer!!!! You lost :( Your choice is: <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            computerScore += 1;
-        };
-        if ((userChoice == 'scissors') && (computerChoice.item == "Paper")){
-            document.getElementById('result').innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            userScore += 1;
+            getGameResult('userWon', userChoice, computerChoice);
         };
 
-        document.getElementById('score').innerHTML = `User ${userScore} : ${computerScore} Computer`;
+        if ((userChoice == 'paper') && (computerChoice.item == "rock")){
+            getGameResult('userWon', userChoice, computerChoice);
+        };
+
+        if ((userChoice == 'paper') && (computerChoice.item == "scissors")){
+            getGameResult('computerWon', userChoice, computerChoice);
+        };
+
+        if ((userChoice == 'scissors') && (computerChoice.item == "rock")){
+            getGameResult('computerWon', userChoice, computerChoice);
+        };
+
+        if ((userChoice == 'scissors') && (computerChoice.item == "Paper")){
+            getGameResult('userWon', userChoice, computerChoice);
+        };
+
+        gameScore();
     }
 
-
-    const userButtons = document.getElementsByClassName('item-button');
-    let userChoice = '';
+    gameScore();
 
     for (const button of userButtons) {
             button.addEventListener("click", (target) => {

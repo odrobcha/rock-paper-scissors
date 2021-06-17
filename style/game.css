@@ -88,3 +88,7 @@
     display: grid;
     justify-items: center;
 }
+
+#result p{
+    text-align: center;
+}
