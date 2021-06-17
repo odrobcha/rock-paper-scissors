@@ -8,7 +8,7 @@
     margin-top: -20px;
 }
 .material label, .material input, .material button{
-    font-size: 18px;
+    font-size: 14px;
     line-height: 2;
 }
 .material #result{
@@ -81,6 +81,7 @@
 }
 #startGame, #playAgain{
     margin-top: 20px;
+    font-size: 18px;
  }
 .start-game-container{
     display: grid;
