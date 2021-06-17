@@ -138,7 +138,7 @@
             infoTextElement .innerHTML = `Let play again! Give computer a chance to win!!!!`
         }
         if (userScore < computerScore){
-            infoTextElement .innerHTML = `Try again and win!!!`
+            infoTextElement .innerHTML = `Try again and win the game!!!`
         }
         if (userScore == computerScore){
             infoTextElement .innerHTML = `Let play again! Somebody has to win!!!!`
