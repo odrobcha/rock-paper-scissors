@@ -8,12 +8,11 @@
     margin-top: -20px;
 }
 .material label, .material input, .material button{
-    font-size: 14px;
+    font-size: 18px;
     line-height: 2;
-    margin-right: 10px;
 }
 .material #result{
-    font-size: 16px;
+    font-size: 24px;
     color: var(--alt-blue);
     font-weight: bolder;
 }
@@ -31,11 +30,11 @@
 }
 .button-container {
     display: grid;
-    grid-template-rows: 40px calc(100% - 20px);
+    grid-template-rows: 60px calc(100% - 20px);
     grid-template-columns: 50% 0% 50%;
 }
 .button-container p{
-    font-size: 14px;
+    font-size: 18px;
 }
 .user-choice{
     grid-column: 1/2;
@@ -81,7 +80,7 @@
     opacity: 0.5;
 }
 #startGame, #playAgain{
-    margin: 20px 0;
+    margin-top: 20px;
  }
 .start-game-container{
     display: grid;
@@ -91,7 +90,7 @@
     width:30px;
 }
 #score, #text {
-    font-size: 16px;
+    font-size: 20px;
     display: grid;
     justify-items: center;
     color: var(--alt-blue);
@@ -128,6 +127,9 @@
 #rules a{
     color: var(--alt-blue);
     text-decoration: none;
+}
+.result-img{
+    width: 40px;
 }
 @media only screen and (min-width: 650px) and (max-width: 1000px) {
 
