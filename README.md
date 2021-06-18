@@ -17,4 +17,7 @@
 ### Do you want to know more? Wacth this (https://youtu.be/Kov2G0GouBw).
 ### Do you want to play? Glick here -> (https://odrobcha.github.io/rock-paper-scissors/)
 
+## Also advanced version is available. Give computer second chance. If computer lost in the first round, it will play second. If you win again, you score +3 points. Else computer gains only +2 points. Check your luck!!!
+           
+
 ### Game implemented using following technics: HTML, CSS, JS
