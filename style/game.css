@@ -5,7 +5,6 @@
 .description-img{
     width: 100px;
     float: right;
-    margin-top: -20px;
 }
 .item-button img, #computerChoice img{
     width: 70px;
@@ -24,7 +23,9 @@
     margin: 20px 0;
 }
 .explain p{
-    line-height: 2.5rem;
+    line-height: 3rem;
+    padding: 0 20px;
+
 }
 .material .item-button{
     cursor: pointer;

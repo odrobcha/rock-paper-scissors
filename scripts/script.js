@@ -142,7 +142,7 @@
         };
 
     }
-    let displayComputerResult = (computerItem) => {
+    const displayComputerResult = (computerItem) => {
 
         computerChoiceImg.setAttribute("src", computerItem.imgSrc);
         document.getElementById('computer-choice-img-title').innerHTML = computerItem.item;
@@ -154,11 +154,8 @@
     const playGame = ()=>{
         if(userChoice == ''){
             resultElement.innerHTML =`<p>Please, make your choice</p>`;
-
             return
         };
-
-
 
         if (simpleGame) {
             let computerChoice = computerButtons[Number(randomComputerChoice())];
@@ -175,25 +172,17 @@
         } else {
             let computerChoice = computerButtons[Number(randomComputerChoice())];
             let resultGame = checkResults(computerChoice);
-            console.log( 'first = ' + resultGame );
-
 
             if (resultGame == 'userWon'){
                 advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
-
-
                 resultElement.classList.add('display-none');
-
 
                 setTimeout( ()=> {
                     let computerChoiceSecond = computerButtons[Number(randomComputerChoice())];
                     let resultGameSecond = checkResults(computerChoiceSecond);
-                    console.log('second ' + resultGameSecond);
 
                     if (resultGameSecond == 'userWon'){
-                        console.log( resultGameSecond + ' '+ userScore);
                         userScore += 3;
-                        console.log(resultGameSecond + ' '+ userScore);
                         displayComputerResult(computerChoiceSecond);
                     }
                     if (resultGameSecond == 'draw'){
@@ -202,9 +191,7 @@
                         computerScore += 0;
                     }
                     if (resultGameSecond  == 'computerWon'){
-                        console.log( resultGameSecond + ' '+ computerScore);
                         computerScore +=2;
-                        console.log( resultGameSecond + ' '+ computerScore);
                         displayComputerResult(computerChoiceSecond);
                     }
                     resultElement.classList.remove('display-none');
@@ -219,17 +206,10 @@
             if (resultGame  == 'draw'){
                 displayComputerResult(computerChoice);
             }
-
-
-
         }
-
-
         playAgainButton.classList.remove("display-none");
         startGameButton.classList.add('display-none');
     }
-
-
     gameScore();
     simpleGameButton.addEventListener('click', () =>{
         simpleGame = true;
@@ -252,18 +232,14 @@
                 button.classList.remove('inactive');
         };
         computerChoiceElement.classList.add('display-none');
-
         resultElement.innerHTML = '';
     })
-
 
     for (const button of userButtons) {
             button.addEventListener("click", (target) => {
 
                if (!startGameButton.classList.contains('display-none')) {
-
                    userChoice = button.getAttribute('id');
-
                    addInactiveClass();
                    button.classList.remove('inactive');
                    computerChoiceElement.classList.add('display-none');
