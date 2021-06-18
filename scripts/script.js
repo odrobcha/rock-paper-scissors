@@ -175,11 +175,13 @@
 
             if (resultGame == 'userWon'){
                 advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
+                playAgainButton.classList.add('test');
                 resultElement.classList.add('display-none');
 
                 setTimeout( ()=> {
                     let computerChoiceSecond = computerButtons[Number(randomComputerChoice())];
                     let resultGameSecond = checkResults(computerChoiceSecond);
+
 
                     if (resultGameSecond == 'userWon'){
                         userScore += 3;
@@ -196,7 +198,8 @@
                     }
                     resultElement.classList.remove('display-none');
                     advancedTextElement.innerHTML= '';
-                }, 2500);
+                    playAgainButton.classList.remove('test');
+                }, 2000);
             }
 
             if (resultGame  == 'computerWon'){
@@ -232,6 +235,7 @@
                 button.classList.remove('inactive');
         };
         computerChoiceElement.classList.add('display-none');
+
         resultElement.innerHTML = '';
     })
 
@@ -239,7 +243,9 @@
             button.addEventListener("click", (target) => {
 
                if (!startGameButton.classList.contains('display-none')) {
+
                    userChoice = button.getAttribute('id');
+
                    addInactiveClass();
                    button.classList.remove('inactive');
                    computerChoiceElement.classList.add('display-none');

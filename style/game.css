@@ -188,7 +188,13 @@
         height: 430px;
     }
 }
-
+.options{
+    padding: 0 20px;
+}
 .options button{
     cursor: pointer;
+}
+
+.test{
+    opacity: 0;
 }
