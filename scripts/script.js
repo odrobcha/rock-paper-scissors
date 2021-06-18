@@ -181,6 +181,7 @@
             if (resultGame == 'userWon'){
                 advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
 
+
                 resultElement.classList.add('display-none');
 
 
@@ -208,7 +209,7 @@
                     }
                     resultElement.classList.remove('display-none');
                     advancedTextElement.innerHTML= '';
-                }, 3000);
+                }, 2500);
             }
 
             if (resultGame  == 'computerWon'){

@@ -23,6 +23,9 @@
     text-align: center;
     margin: 20px 0;
 }
+.explain p{
+    line-height: 2.5rem;
+}
 .material .item-button{
     cursor: pointer;
     background-color: var(--my-dark-gray);
