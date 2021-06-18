@@ -2,14 +2,18 @@
     let userScore = 0;
     let computerScore = 0;
     let userChoice = '';
+    let simpleGame = true;
 
     const userButtons = document.getElementsByClassName('item-button');
     const resultElement = document.getElementById('result');
     const computerChoiceImg = document.getElementById('computer-choice-img');
-    const infoTextElement = document.getElementById('text');
+
     const computerChoiceElement = document.getElementById('computerChoice');
     const playAgainButton = document.getElementById('playAgain');
     const startGameButton = document.getElementById('startGame');
+    const simpleGameButton= document.getElementById('simpleGame');
+    const advancedGameButton = document.getElementById('advancedGame');
+    const advancedTextElement = document.getElementById('advancedText');
 
     const computerButtons = [
         {item: 'rock', imgSrc: "img/rock.jpeg"},
@@ -33,121 +37,211 @@
         };
         if (result == "userWon"){
             resultElement.innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! <img class="result-img" src="img/win.jpeg"></br>You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            userScore += 1;
+
         };
         if (result == "computerWon"){
             resultElement.innerHTML = `<p class="result-text">Yammer!!!! You lost <img class="result-img" src="img/lose.jpeg"></br> You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-            computerScore += 1;
+
+
         };
 
     };
     const gameScore = () =>{
         document.getElementById('score').innerHTML = `SmartUser ${userScore} : ${computerScore} Computer`;
     };
+    const checkResults = (computerItem) =>{
+        if (userChoice == computerItem.item){
+            getGameResult('draw', userChoice, computerItem);
+            return "draw";
+        };
+
+        if ((userChoice == 'rock') && (computerItem.item == "paper")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+
+        if ((userChoice == 'rock') && (computerItem.item == "scissors")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'rock') && (computerItem.item == "lizard")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'rock') && (computerItem.item == "spock")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+
+        if ((userChoice == 'paper') && (computerItem.item == "rock")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+
+        if ((userChoice == 'paper') && (computerItem.item == "scissors")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+        if ((userChoice == 'paper') && (computerItem.item == "lizard")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'paper') && (computerItem.item == "spock")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+
+        if ((userChoice == 'scissors') && (computerItem.item == "rock")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+
+        if ((userChoice == 'scissors') && (computerItem.item == "paper")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'scissors') && (computerItem.item == "lizard")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'scissors') && (computerItem.item == "spock")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+        if ((userChoice == 'lizard') && (computerItem.item == "rock")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+        if ((userChoice == 'lizard') && (computerItem.item == "paper")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'lizard') && (computerItem.item == "scissors")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+        if ((userChoice == 'lizard') && (computerItem.item == "spock")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'spock') && (computerItem.item == "rock")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'spock') && (computerItem.item == "paper")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+        if ((userChoice == 'spock') && (computerItem.item == "scissors")){
+            getGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if ((userChoice == 'spock') && (computerItem.item == "lizard")){
+            getGameResult('computerWon', userChoice, computerItem);
+            return 'computerWon';
+        };
+
+    }
+    let displayComputerResult = (computerItem) => {
+
+        computerChoiceImg.setAttribute("src", computerItem.imgSrc);
+        document.getElementById('computer-choice-img-title').innerHTML = computerItem.item;
+        computerChoiceElement.classList.remove('display-none');
+        userChoice = '';
+        gameScore();
+    }
+
     const playGame = ()=>{
         if(userChoice == ''){
             resultElement.innerHTML =`<p>Please, make your choice</p>`;
-            infoTextElement .innerHTML = '';
+
             return
         };
 
-        let computerChoice = computerButtons[Number(randomComputerChoice())];
-
-        computerChoiceImg.setAttribute("src", computerChoice.imgSrc);
-        document.getElementById('computer-choice-img-title').innerHTML = computerChoice.item;
-        computerChoiceElement.classList.remove('display-none');
 
 
-       if (userChoice == computerChoice.item){
-           getGameResult('draw', userChoice, computerChoice);
-       };
+        if (simpleGame) {
+            let computerChoice = computerButtons[Number(randomComputerChoice())];
+            let resultGame = checkResults(computerChoice);
 
-       if ((userChoice == 'rock') && (computerChoice.item == "paper")){
-           getGameResult('computerWon', userChoice, computerChoice);
-       };
+            if (resultGame  == 'userWon'){
+                userScore += 1;
+            };
+            if (resultGame  == 'computerWon'){
+                computerScore += 1;
+            }
+            displayComputerResult(computerChoice);
 
-        if ((userChoice == 'rock') && (computerChoice.item == "scissors")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'rock') && (computerChoice.item == "lizard")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'rock') && (computerChoice.item == "spock")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-
-        if ((userChoice == 'paper') && (computerChoice.item == "rock")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-
-        if ((userChoice == 'paper') && (computerChoice.item == "scissors")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'paper') && (computerChoice.item == "lizard")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'paper') && (computerChoice.item == "spock")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-
-        if ((userChoice == 'scissors') && (computerChoice.item == "rock")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-
-        if ((userChoice == 'scissors') && (computerChoice.item == "Paper")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'scissors') && (computerChoice.item == "lizard")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'scissors') && (computerChoice.item == "spock")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'lizard') && (computerChoice.item == "rock")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'lizard') && (computerChoice.item == "paper")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'lizard') && (computerChoice.item == "scissors")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'lizard') && (computerChoice.item == "spock")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'spock') && (computerChoice.item == "rock")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'spock') && (computerChoice.item == "paper")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'spock') && (computerChoice.item == "scissors")){
-            getGameResult('userWon', userChoice, computerChoice);
-        };
-        if ((userChoice == 'spock') && (computerChoice.item == "lizard")){
-            getGameResult('computerWon', userChoice, computerChoice);
-        };
+        } else {
+            let computerChoice = computerButtons[Number(randomComputerChoice())];
+            let resultGame = checkResults(computerChoice);
+            console.log( 'first = ' + resultGame );
 
 
-        gameScore();
+            if (resultGame == 'userWon'){
+                advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
+
+                resultElement.classList.add('display-none');
 
 
-        userChoice = '';
+                setTimeout( ()=> {
+                    let computerChoiceSecond = computerButtons[Number(randomComputerChoice())];
+                    let resultGameSecond = checkResults(computerChoiceSecond);
+                    console.log('second ' + resultGameSecond);
 
-        if (userScore > computerScore){
-            infoTextElement .innerHTML = `Let play again! Give computer a chance to win!!!!`
+                    if (resultGameSecond == 'userWon'){
+                        console.log( resultGameSecond + ' '+ userScore);
+                        userScore += 3;
+                        console.log(resultGameSecond + ' '+ userScore);
+                        displayComputerResult(computerChoiceSecond);
+                    }
+                    if (resultGameSecond == 'draw'){
+                        displayComputerResult(computerChoiceSecond);
+                        userScore += 0;
+                        computerScore += 0;
+                    }
+                    if (resultGameSecond  == 'computerWon'){
+                        console.log( resultGameSecond + ' '+ computerScore);
+                        computerScore +=2;
+                        console.log( resultGameSecond + ' '+ computerScore);
+                        displayComputerResult(computerChoiceSecond);
+                    }
+                    resultElement.classList.remove('display-none');
+                    advancedTextElement.innerHTML= '';
+                }, 3000);
+            }
+
+            if (resultGame  == 'computerWon'){
+                computerScore +=2;
+                displayComputerResult(computerChoice);
+            }
+            if (resultGame  == 'draw'){
+                displayComputerResult(computerChoice);
+            }
+
+
+
         }
-        if (userScore < computerScore){
-            infoTextElement .innerHTML = `Try again and win the game!!!`
-        }
-        if (userScore == computerScore){
-            infoTextElement .innerHTML = `Let play again! Somebody has to win!!!!`
-        }
+
+
         playAgainButton.classList.remove("display-none");
         startGameButton.classList.add('display-none');
     }
 
+
     gameScore();
+    simpleGameButton.addEventListener('click', () =>{
+        simpleGame = true;
+        simpleGameButton.classList.remove('inactive');
+        advancedGameButton.classList.add('inactive');
+
+    });
+    advancedGameButton.addEventListener('click', () =>{
+        simpleGame = false;
+        simpleGameButton.classList.add('inactive');
+        advancedGameButton.classList.remove('inactive');
+
+    });
 
     playAgainButton.addEventListener('click', () =>{
 
@@ -157,7 +251,7 @@
                 button.classList.remove('inactive');
         };
         computerChoiceElement.classList.add('display-none');
-        infoTextElement .innerHTML = '';
+
         resultElement.innerHTML = '';
     })
 
@@ -166,7 +260,9 @@
             button.addEventListener("click", (target) => {
 
                if (!startGameButton.classList.contains('display-none')) {
+
                    userChoice = button.getAttribute('id');
+
                    addInactiveClass();
                    button.classList.remove('inactive');
                    computerChoiceElement.classList.add('display-none');

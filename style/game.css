@@ -14,10 +14,14 @@
     font-size: 18px;
     line-height: 2;
 }
-.material #result{
+.material #result, #advancedText{
     font-size: 24px;
     color: var(--alt-blue);
     font-weight: bolder;
+}
+#advancedText{
+    text-align: center;
+    margin: 20px 0;
 }
 .material .item-button{
     cursor: pointer;
@@ -179,4 +183,8 @@
 
         height: 430px;
     }
+}
+
+.options button{
+    cursor: pointer;
 }
