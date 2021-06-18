@@ -1,14 +1,17 @@
 :root {
     --my-dark-gray: #313133;
-    --item-button-width: 70px;
+    --item-button-width: 100px;
 }
 .description-img{
     width: 100px;
     float: right;
     margin-top: -20px;
 }
+.item-button img, #computerChoice img{
+    width: 70px;
+}
 .material label, .material input, .material button{
-    font-size: 14px;
+    font-size: 18px;
     line-height: 2;
 }
 .material #result{
@@ -43,7 +46,7 @@
     justify-self: center;
     grid-template-rows: 100%;
     grid-template-columns: repeat(5, var(--item-button-width));
-    height: 102px;
+    height: 130px;
 }
 #computerChoice{
     grid-column: 3/4;
@@ -53,7 +56,8 @@
     border: none;
     align-items: center;
     justify-items: center;
-    height: 102px;
+    height: 130px;
+    padding: 0 10px;
 }
 #computer-choice-img-title{
     background-color: var(--my-dark-gray);
@@ -109,7 +113,7 @@
  }
 #rules{
     position: absolute;
-    width: 95%;
+    width: 97%;
     min-height: 400px;
     margin: 0 auto;
     background-color: white;
@@ -121,30 +125,58 @@
 #rules-close{
     float: right;
     cursor: pointer;
+    font-weight: bold;
 }
 #rules>*, li{
     margin: 20px 0;
 }
-#rules a{
-    color: var(--alt-blue);
-    text-decoration: none;
+#rules ul, #rules ul li:first-child{
+   margin-top: 0;
+}
+
+.rules-text{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 60px calc(100% - 60px);
+    grid-auto-flow: column;
 }
 .result-img{
     width: 40px;
 }
-@media only screen and (min-width: 650px) and (max-width: 1000px) {
+.container {
+    max-width: 90vw;
+}
+@media only screen and (min-width: 650px) and (max-width: 1500px) {
+    .container {
+        width: 80%;
+        max-width: 95vw;
+    }
+    .button-container{
+        grid-template-columns: 70% 0% 30%;
+    }
+
+}
+@media only screen and (min-width: 650px) and (max-width: 900px) {
 
     .user-choice{
         grid-template-rows: 50% 50%;
         grid-template-columns: repeat(3, var(--item-button-width));
         grid-row-gap: 10px;
+        height: auto;
+    }
+
+    .item-button{
+        height: 130px;
     }
 }
 @media only screen and (max-width: 649px) {
 
     .user-choice{
-        grid-template-rows: repeat(3, 33.3%);
         grid-template-columns: repeat(2, var(--item-button-width));
         grid-row-gap: 10px;
+    }
+    .button-container {
+
+        height: 430px;
     }
 }
