@@ -1,1 +1,3 @@
 .idea
+scripts/jest/sum.js
+scripts/jest/sum.test.js

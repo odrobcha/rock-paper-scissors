@@ -27,7 +27,7 @@
     padding: 0 20px;
 
 }
-.material .item-button{
+.item-button{
     cursor: pointer;
     background-color: var(--my-dark-gray);
     display: grid;
@@ -187,6 +187,9 @@
 
         height: 430px;
     }
+    .container{
+        width: 86%;
+    }
 }
 .options{
     padding: 0 20px;
@@ -197,4 +200,24 @@
 
 .invisible{
     opacity: 0;
+}
+
+.game-mode{
+    display: grid;
+    grid-template-rows:  100%;
+    grid-template-columns: 50% 50%;
+    padding-bottom: 20px;
+
+}
+#classic{
+    justify-self: end;
+    margin-right: 10px;
+}
+#extended{
+    margin-left: 10px;
+    justify-self: start;
+}
+
+body {
+    padding-top: 10.5vh;
 }

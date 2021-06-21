@@ -3,6 +3,7 @@
     let computerScore = 0;
     let userChoice = '';
     let simpleGame = true;
+    let maxItemNumber = 3;
 
     const userButtons = document.getElementsByClassName('item-button');
     const resultElement = document.getElementById('result');
@@ -14,6 +15,10 @@
     const simpleGameButton= document.getElementById('simpleGame');
     const advancedGameButton = document.getElementById('advancedGame');
     const advancedTextElement = document.getElementById('advancedText');
+    
+    const classicGameButton = document.getElementById('classic');
+    const extendedGameButton = document.getElementById('extended');
+
 
     const computerButtons = [
         {item: 'rock', imgSrc: "img/rock.jpeg"},
@@ -28,10 +33,11 @@
             button.classList.add('inactive');
         }
     }
-    const randomComputerChoice = () =>{
-        return Math.floor(Math.random()*5);
+    
+    const randomComputerChoice = (num) =>{
+        return Math.floor(Math.random()*num);
     }
-        const getGameResult = (result, userChoice, computerChoice) => {
+        const displayGameResult = (result, userChoice, computerChoice) => {
         if(result == 'draw'){
             resultElement.innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen.</br> <img class="result-img" src="img/draw.jpeg">Nobody won.</p>`
         };
@@ -48,90 +54,17 @@
     };
     const checkResults = (computerItem) =>{
         if (userChoice == computerItem.item){
-            getGameResult('draw', userChoice, computerItem);
+            displayGameResult('draw', userChoice, computerItem);
             return "draw";
         };
-        if ((userChoice == 'rock') && (computerItem.item == "paper")){
-            getGameResult('computerWon', userChoice, computerItem);
+        if (((userChoice == 'spock') && (computerItem.item == "scissors")) || ((userChoice == 'spock') && (computerItem.item == "rock")) || ((userChoice == 'lizard') && (computerItem.item == "spock")) || ((userChoice == 'lizard') && (computerItem.item == "paper")) || ((userChoice == 'scissors') && (computerItem.item == "paper")) ||((userChoice == 'paper') && (computerItem.item == "spock")) ||(userChoice == 'rock') && (computerItem.item == "scissors") || ((userChoice == 'rock') && (computerItem.item == "lizard")) || ((userChoice == 'paper') && (computerItem.item == "rock")) || ((userChoice == 'paper') && (computerItem.item == "lizard"))){
+            displayGameResult('userWon', userChoice, computerItem);
+            return 'userWon';
+        };
+        if (((userChoice == 'spock') && (computerItem.item == "lizard")) || ((userChoice == 'spock') && (computerItem.item == "paper")) || ((userChoice == 'lizard') && (computerItem.item == "scissors")) || ((userChoice == 'lizard') && (computerItem.item == "rock")) || ((userChoice == 'scissors') && (computerItem.item == "spock")) || ((userChoice == 'scissors') && (computerItem.item == "lizard")) || ((userChoice == 'scissors') && (computerItem.item == "rock")) || ((userChoice == 'paper') && (computerItem.item == "scissors")) || ((userChoice == 'rock') && (computerItem.item == "spock")) || (userChoice == 'rock') && (computerItem.item == "paper")){
+            displayGameResult('computerWon', userChoice, computerItem);
             return 'computerWon';
         };
-        if ((userChoice == 'rock') && (computerItem.item == "scissors")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'rock') && (computerItem.item == "lizard")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'rock') && (computerItem.item == "spock")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'paper') && (computerItem.item == "rock")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'paper') && (computerItem.item == "scissors")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'paper') && (computerItem.item == "lizard")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'paper') && (computerItem.item == "spock")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'scissors') && (computerItem.item == "rock")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'scissors') && (computerItem.item == "paper")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'scissors') && (computerItem.item == "lizard")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'scissors') && (computerItem.item == "spock")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'lizard') && (computerItem.item == "rock")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'lizard') && (computerItem.item == "paper")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'lizard') && (computerItem.item == "scissors")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'lizard') && (computerItem.item == "spock")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'spock') && (computerItem.item == "rock")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'spock') && (computerItem.item == "paper")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-        if ((userChoice == 'spock') && (computerItem.item == "scissors")){
-            getGameResult('userWon', userChoice, computerItem);
-            return 'userWon';
-        };
-        if ((userChoice == 'spock') && (computerItem.item == "lizard")){
-            getGameResult('computerWon', userChoice, computerItem);
-            return 'computerWon';
-        };
-
     }
     const displayComputerResult = (computerItem) => {
 
@@ -149,7 +82,7 @@
         };
 
         if (simpleGame) {
-            let computerChoice = computerButtons[Number(randomComputerChoice())];
+            let computerChoice = computerButtons[Number(randomComputerChoice(maxItemNumber))];
             let resultGame = checkResults(computerChoice);
 
             if (resultGame  == 'userWon'){
@@ -161,7 +94,7 @@
             displayComputerResult(computerChoice);
 
         } else {
-            let computerChoice = computerButtons[Number(randomComputerChoice())];
+            let computerChoice = computerButtons[Number(randomComputerChoice(maxItemNumber))];
             let resultGame = checkResults(computerChoice);
             if (resultGame == 'userWon'){
                 advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
@@ -169,7 +102,7 @@
                 resultElement.classList.add('display-none');
 
                 setTimeout( ()=> {
-                    let computerChoiceSecond = computerButtons[Number(randomComputerChoice())];
+                    let computerChoiceSecond = computerButtons[Number(randomComputerChoice(maxItemNumber))];
                     let resultGameSecond = checkResults(computerChoiceSecond);
 
                     if (resultGameSecond == 'userWon'){
@@ -203,6 +136,25 @@
         startGameButton.classList.add('display-none');
     }
     gameScore();
+    document.querySelector('.item-button#lizard').classList.add('display-none');
+    document.querySelector('.item-button#spock').classList.add('display-none');
+
+    classicGameButton.addEventListener('click', () =>{
+        maxItemNumber = 3;
+        classicGameButton.classList.remove('inactive');
+        extendedGameButton.classList.add('inactive');
+        document.getElementById('lizard').classList.add('display-none');
+        document.getElementById('spock').classList.add('display-none');
+    });
+
+    extendedGameButton.addEventListener('click', () =>{
+        maxItemNumber = 5;
+        classicGameButton.classList.add('inactive');
+        extendedGameButton.classList.remove('inactive');
+        document.getElementById('lizard').classList.remove('display-none');
+        document.getElementById('spock').classList.remove('display-none');
+    });
+
     simpleGameButton.addEventListener('click', () =>{
         simpleGame = true;
         simpleGameButton.classList.remove('inactive');
