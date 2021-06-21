@@ -194,3 +194,7 @@
 .options button{
     cursor: pointer;
 }
+
+.invisible{
+    opacity: 0;
+}

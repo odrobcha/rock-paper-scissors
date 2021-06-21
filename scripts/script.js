@@ -31,18 +31,19 @@
     const randomComputerChoice = () =>{
         return Math.floor(Math.random()*5);
     }
-    const getGameResult = (result, userChoice, computerChoice) => {if(result == 'draw'){
-        resultElement.innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen.</br> <img class="result-img" src="img/draw.jpeg">Nobody won.</p>`
-    };if (result == "userWon"){
-        resultElement.innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! <img class="result-img" src="img/win.jpeg"></br>You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+        const getGameResult = (result, userChoice, computerChoice) => {
+        if(result == 'draw'){
+            resultElement.innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen.</br> <img class="result-img" src="img/draw.jpeg">Nobody won.</p>`
+        };
+        if (result == "userWon"){
+            resultElement.innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! <img class="result-img" src="img/win.jpeg"></br>You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
 
+        };
+        if (result == "computerWon"){
+            resultElement.innerHTML = `<p class="result-text">Yammer!!!! You lost <img class="result-img" src="img/lose.jpeg"></br> You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
+        };
     };
-    if (result == "computerWon"){
-        resultElement.innerHTML = `<p class="result-text">Yammer!!!! You lost <img class="result-img" src="img/lose.jpeg"></br> You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
-    };
-
-    };
-    const displayGameScore = () =>{
+    const gameScore = () =>{
         document.getElementById('score').innerHTML = `SmartUser ${userScore} : ${computerScore} Computer`;
     };
     const checkResults = (computerItem) =>{
@@ -50,7 +51,6 @@
             getGameResult('draw', userChoice, computerItem);
             return "draw";
         };
-
         if ((userChoice == 'rock') && (computerItem.item == "paper")){
             getGameResult('computerWon', userChoice, computerItem);
             return 'computerWon';
@@ -134,11 +134,12 @@
 
     }
     const displayComputerResult = (computerItem) => {
+
         computerChoiceImg.setAttribute("src", computerItem.imgSrc);
         document.getElementById('computer-choice-img-title').innerHTML = computerItem.item;
         computerChoiceElement.classList.remove('display-none');
         userChoice = '';
-        displayGameScore();
+        gameScore();
     }
 
     const playGame = ()=>{
@@ -162,30 +163,31 @@
         } else {
             let computerChoice = computerButtons[Number(randomComputerChoice())];
             let resultGame = checkResults(computerChoice);
-
             if (resultGame == 'userWon'){
                 advancedTextElement.innerHTML = `You won!!! But wait.... Computer plays second round. </br> Computer is making choice.....`;
+                playAgainButton.classList.add('invisible');
                 resultElement.classList.add('display-none');
 
                 setTimeout( ()=> {
                     let computerChoiceSecond = computerButtons[Number(randomComputerChoice())];
                     let resultGameSecond = checkResults(computerChoiceSecond);
 
-
                     if (resultGameSecond == 'userWon'){
                         userScore += 3;
                         displayComputerResult(computerChoiceSecond);
                     }
+
                     if (resultGameSecond == 'draw'){
                         displayComputerResult(computerChoiceSecond);
-
                     }
+
                     if (resultGameSecond  == 'computerWon'){
                         computerScore +=2;
                         displayComputerResult(computerChoiceSecond);
                     }
                     resultElement.classList.remove('display-none');
                     advancedTextElement.innerHTML= '';
+                    playAgainButton.classList.remove('invisible');
                 }, 2000);
             }
 
@@ -200,7 +202,7 @@
         playAgainButton.classList.remove("display-none");
         startGameButton.classList.add('display-none');
     }
-    displayGameScore();
+    gameScore();
     simpleGameButton.addEventListener('click', () =>{
         simpleGame = true;
         simpleGameButton.classList.remove('inactive');
@@ -215,19 +217,24 @@
     });
 
     playAgainButton.addEventListener('click', () =>{
+
         playAgainButton.classList.add("display-none");
         startGameButton.classList.remove("display-none");
         for (const button of userButtons) {
                 button.classList.remove('inactive');
         };
         computerChoiceElement.classList.add('display-none');
+
         resultElement.innerHTML = '';
     })
 
     for (const button of userButtons) {
             button.addEventListener("click", (target) => {
+
                if (!startGameButton.classList.contains('display-none')) {
+
                    userChoice = button.getAttribute('id');
+
                    addInactiveClass();
                    button.classList.remove('inactive');
                    computerChoiceElement.classList.add('display-none');
@@ -240,6 +247,7 @@
     document.getElementById('rules-link').addEventListener('click' , () => {
         document.getElementById('rules').classList.remove('display-none');
     });
+
     document.getElementById('rules-close').addEventListener('click', () =>{
         document.getElementById('rules').classList.add('display-none');
     })
