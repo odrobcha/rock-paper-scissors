@@ -1,4 +1,4 @@
-(function (){
+const myScript = () => {
     let userScore = 0;
     let computerScore = 0;
     let userChoice = '';
@@ -37,18 +37,20 @@
     const randomComputerChoice = (num) =>{
         return Math.floor(Math.random()*num);
     }
-        const displayGameResult = (result, userChoice, computerChoice) => {
-        if(result == 'draw'){
+
+    const displayGameResult = (result, userChoice, computerChoice) => {
+        if(result === 'draw'){
             resultElement.innerHTML = `<p class="result-text">Both of you have <img class="result-img" src=img/${userChoice}.jpeg> chosen.</br> <img class="result-img" src="img/draw.jpeg">Nobody won.</p>`
         };
-        if (result == "userWon"){
+        if (result === "userWon"){
             resultElement.innerHTML = `<p class="result-text">Yohoooo!!! You won!!!!!!! <img class="result-img" src="img/win.jpeg"></br>You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
 
         };
-        if (result == "computerWon"){
+        if (result === "computerWon"){
             resultElement.innerHTML = `<p class="result-text">Yammer!!!! You lost <img class="result-img" src="img/lose.jpeg"></br> You have <img class="result-img" src=img/${userChoice}.jpeg> chosen. Computer choice is <img class="result-img" src=img/${computerChoice.item}.jpeg></p>`
         };
     };
+
     const gameScore = () =>{
         document.getElementById('score').innerHTML = `SmartUser ${userScore} : ${computerScore} Computer`;
     };
@@ -203,4 +205,8 @@
     document.getElementById('rules-close').addEventListener('click', () =>{
         document.getElementById('rules').classList.add('display-none');
     })
-})();
+};
+
+myScript();
+
+module.exports = myScript;
