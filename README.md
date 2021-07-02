@@ -1,8 +1,18 @@
 # Retro game "Rock-Paper-Scissors" is still alive and upgraded to "Rock-Paper-Scissors-Lizard-Spock"
 
 ## Classic game - everything depends on your luck :)
+### There are two versions: 
+## Classic: Rock-Paper-Scissor, 
 
-### Rulles
+### standard rulles:
+- Scissors cuts Paper
+- Paper covers Rock
+- Rock crushes Scissors
+
+## Extended: Rock-Paper-Scissors-Lizard-Spock
+
+### Expanded rulles
+
 - Scissors cuts Paper
 - Paper covers Rock
 - Rock crushes Lizard
